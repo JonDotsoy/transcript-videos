@@ -1,0 +1,4 @@
+services:
+  transcript:
+    build: ./transcript
+    tty: true

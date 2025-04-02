@@ -1,5 +1,5 @@
 venv_path = venv
-python_bin = $(shell asdf which python)
+python_bin = $(shell which python)
 
 .PHONY: all
 all: transcript-mp4
@@ -18,7 +18,6 @@ ${venv_path}/lib/python3.13/site-packages/argparse.py: ${venv_path}
 	pip install argparse
 
 ${venv_path}:
-	asdf install
 	$(python_bin) -m venv "${venv_path}"
 
 .PHONY: transcript-mp4
