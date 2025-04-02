@@ -4,3 +4,4 @@ WORKDIR /usr/share/app
 FROM base as builder
 COPY . .
 RUN make install
+
