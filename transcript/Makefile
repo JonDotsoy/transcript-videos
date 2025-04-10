@@ -48,3 +48,23 @@ transcript-mp4: install
 	fi
 	ffmpeg -i "$(MP4_FILE)" -vn -acodec pcm_s16le -ar 16000 -ac 1 "$(AUDIO_FILE)"
 	python transcript-audio.py --audio-path="$(AUDIO_FILE)" --transcription-file="$(TRANSCRIPT_FILE)"
+
+.PHONY: transcript-wav
+transcript-wav: install
+	@if [ -z "$(AUDIO_FILE)" ]; then \
+		echo "Error: AUDIO_FILE is not set"; \
+		exit 1; \
+	fi
+	@if ! echo "$(AUDIO_FILE)" | grep -qE '\.wav$$'; then \
+		echo "Error: AUDIO_FILE must end with .wav"; \
+		exit 1; \
+	fi
+	@if [ -z "$(TRANSCRIPT_FILE)" ]; then \
+		echo "Error: TRANSCRIPT_FILE is not set"; \
+		exit 1; \
+	fi
+	@if ! echo "$(TRANSCRIPT_FILE)" | grep -qE '\.txt$$'; then \
+		echo "Error: TRANSCRIPT_FILE must end with .txt"; \
+		exit 1; \
+	fi
+	python transcript-audio.py --audio-path="$(AUDIO_FILE)" --transcription-file="$(TRANSCRIPT_FILE)"
