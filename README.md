@@ -60,3 +60,9 @@ make transcript-mp4 MP4_FILE=/ruta/al/video.mp4 AUDIO_FILE=/ruta/al/audio.wav TR
 
 Este proyecto está licenciado bajo la [MIT License](./LICENSE).  
 Puedes usarlo, modificarlo y distribuirlo libremente, siempre que mantengas los créditos originales.
+
+## 👥 Contribuidores
+
+Agradecemos a todas las personas que han contribuido a este proyecto. Sus aportes son esenciales para su desarrollo y mejora.
+
+Si deseas unirte como contribuidor, por favor revisa nuestra [Guía de Contribución](./CONTRIBUTING.md) para más detalles sobre cómo empezar.

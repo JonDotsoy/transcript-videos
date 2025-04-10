@@ -1,10 +1,20 @@
 import whisper
 import argparse
+import os
 
 parser = argparse.ArgumentParser(description="Transcribe audio using Whisper")
 parser.add_argument("--audio-path", required=True, help="Path to the audio file (e.g., audio.wav)")
 parser.add_argument("--transcription-file", required=True, help="Path to save the transcription with timestamps")
 args = parser.parse_args()
+
+# Validate if the audio file exists
+if not os.path.exists(args.audio_path):
+    raise FileNotFoundError(f"The audio file '{args.audio_path}' does not exist.")
+
+# Validate if the destination folder for the transcription file exists
+transcription_folder = os.path.dirname(args.transcription_file)
+if not os.path.exists(transcription_folder):
+    os.makedirs(transcription_folder)
 
 model = whisper.load_model("base")
 result = model.transcribe(args.audio_path)
