@@ -12,6 +12,10 @@ Antes de comenzar, asegúrate de tener instaladas las siguientes herramientas en
 - **Python**  
   Se recomienda instalar Python utilizando [`asdf`](https://asdf-vm.com), un gestor de versiones que facilita su manejo en distintos entornos.
 
+  ```bash
+  asdf install
+  ```
+
 - **ffmpeg**  
   Utilizado para la extracción de audio desde archivos `.mp4`. Puede instalarse, por ejemplo, con Homebrew:
 
