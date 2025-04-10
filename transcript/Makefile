@@ -1,5 +1,7 @@
 venv_path = venv
 python_bin = $(shell which python)
+pip_link = ./${venv_path}/bin/pip
+python_link = ./${venv_path}/bin/python
 
 .PHONY: all
 all: transcript-mp4
@@ -9,13 +11,13 @@ install: ${venv_path} ${venv_path}/lib/python3.13/site-packages/whisper ${venv_p
 # pip install torch argparse
 
 ${venv_path}/lib/python3.13/site-packages/whisper: ${venv_path}
-	pip install git+https://github.com/openai/whisper.git
+	${pip_link} install git+https://github.com/openai/whisper.git
 
 ${venv_path}/lib/python3.13/site-packages/torch: ${venv_path}
-	pip install torch
+	${pip_link} install torch
 
 ${venv_path}/lib/python3.13/site-packages/argparse.py: ${venv_path}
-	pip install argparse
+	${pip_link} install argparse
 
 ${venv_path}:
 	$(python_bin) -m venv "${venv_path}"
@@ -47,7 +49,7 @@ transcript-mp4: install
 		exit 1; \
 	fi
 	ffmpeg -i "$(MP4_FILE)" -vn -acodec pcm_s16le -ar 16000 -ac 1 "$(AUDIO_FILE)"
-	python transcript-audio.py --audio-path="$(AUDIO_FILE)" --transcription-file="$(TRANSCRIPT_FILE)"
+	${python_link} transcript-audio.py --audio-path="$(AUDIO_FILE)" --transcription-file="$(TRANSCRIPT_FILE)"
 
 .PHONY: transcript-wav
 transcript-wav: install
@@ -67,4 +69,4 @@ transcript-wav: install
 		echo "Error: TRANSCRIPT_FILE must end with .txt"; \
 		exit 1; \
 	fi
-	python transcript-audio.py --audio-path="$(AUDIO_FILE)" --transcription-file="$(TRANSCRIPT_FILE)"
+	${python_link} transcript-audio.py --audio-path="$(AUDIO_FILE)" --transcription-file="$(TRANSCRIPT_FILE)"
