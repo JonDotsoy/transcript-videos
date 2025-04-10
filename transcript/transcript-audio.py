@@ -14,6 +14,8 @@ with open(args.transcription_file, "w") as f:
         start = segment["start"]
         end = segment["end"]
         text = segment["text"]
-        f.write(f"[{start:.2f}s - {end:.2f}s] {text}\n")
+        start_minutes, start_seconds = divmod(int(start), 60)
+        end_minutes, end_seconds = divmod(int(end), 60)
+        f.write(f"[{start_minutes}:{start_seconds:02d} - {end_minutes}:{end_seconds:02d}]\t{text}\n")
 
 print(f"Transcription saved to {args.transcription_file}")
