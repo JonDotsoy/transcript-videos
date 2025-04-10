@@ -3,8 +3,6 @@
 **Transcripción de Videos** es una herramienta que permite convertir un archivo de video en formato `.mp4` en un archivo de texto con la transcripción completa del contenido hablado.  
 Es ideal para tomar notas, analizar contenido o extraer información de manera eficiente.
 
-
-
 ## 🧰 Requisitos
 
 Antes de comenzar, asegúrate de tener instaladas las siguientes herramientas en tu equipo:
@@ -23,8 +21,6 @@ Antes de comenzar, asegúrate de tener instaladas las siguientes herramientas en
   brew install ffmpeg
   ```
 
-
-
 ## ⚙️ Instalación
 
 1. Clona el repositorio y entra en la carpeta del proyecto:
@@ -41,8 +37,6 @@ Antes de comenzar, asegúrate de tener instaladas las siguientes herramientas en
 
    Esto creará un entorno virtual de Python y descargará automáticamente todas las dependencias necesarias para el proyecto.
 
-
-
 ## 🚀 Uso
 
 Para transcribir un archivo `.mp4`, ejecuta el siguiente comando:
@@ -57,7 +51,10 @@ make transcript-mp4 MP4_FILE=/ruta/al/video.mp4 AUDIO_FILE=/ruta/al/audio.wav TR
 - `AUDIO_FILE`: Ruta donde se guardará el archivo `.wav` extraído del video.
 - `TRANSCRIPT_FILE`: Ruta donde se guardará el archivo `.txt` con la transcripción del contenido.
 
+## 🚧 Limitaciones
 
+- La transcripción no discrimina entre diferentes actores o hablantes en el video. Todo el contenido hablado se transcribe como un único flujo de texto.
+- Los videos pueden contener mucha información visual que no es capturada en la transcripción, ya que esta se enfoca únicamente en el contenido hablado.
 
 ## 📄 Licencia
 
