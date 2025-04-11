@@ -50,6 +50,7 @@ make transcript-mp4 MP4_FILE=/ruta/al/video.mp4 AUDIO_FILE=/ruta/al/audio.wav TR
 - `MP4_FILE`: Ruta absoluta al archivo de video `.mp4`.
 - `AUDIO_FILE`: Ruta donde se guardará el archivo `.wav` extraído del video.
 - `TRANSCRIPT_FILE`: Ruta donde se guardará el archivo `.txt` con la transcripción del contenido.
+- `WHISPER_MODEL` _(opcional)_: Nombre del modelo de Whisper a utilizar para la transcripción. Por defecto, se utiliza el modelo `base`. Otros valores posibles incluyen `small`, `medium`, o `large`. Modelos más grandes ofrecen mayor precisión pero requieren más recursos.
 
 ## 🚧 Limitaciones
 
