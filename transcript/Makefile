@@ -3,6 +3,8 @@ python_bin = $(shell which python)
 pip_link = ./${venv_path}/bin/pip
 python_link = ./${venv_path}/bin/python
 
+WHISPER_MODEL ?= base
+
 .PHONY: all
 all: transcript-mp4
 
@@ -48,8 +50,12 @@ transcript-mp4: install
 		echo "Error: TRANSCRIPT_FILE must end with .txt"; \
 		exit 1; \
 	fi
+	@if [ -z "$(WHISPER_MODEL)" ]; then \
+		echo "Error: WHISPER_MODEL is not set"; \
+		exit 1; \
+	fi
 	ffmpeg -i "$(MP4_FILE)" -vn -acodec pcm_s16le -ar 16000 -ac 1 "$(AUDIO_FILE)"
-	${python_link} transcript-audio.py --audio-path="$(AUDIO_FILE)" --transcription-file="$(TRANSCRIPT_FILE)"
+	${python_link} transcript-audio.py --audio-path="$(AUDIO_FILE)" --transcription-file="$(TRANSCRIPT_FILE)" --whisper-model="$(WHISPER_MODEL)"
 
 .PHONY: transcript-wav
 transcript-wav: install
@@ -69,4 +75,8 @@ transcript-wav: install
 		echo "Error: TRANSCRIPT_FILE must end with .txt"; \
 		exit 1; \
 	fi
-	${python_link} transcript-audio.py --audio-path="$(AUDIO_FILE)" --transcription-file="$(TRANSCRIPT_FILE)"
+	@if [ -z "$(WHISPER_MODEL)" ]; then \
+		echo "Error: WHISPER_MODEL is not set"; \
+		exit 1; \
+	fi
+	${python_link} transcript-audio.py --audio-path="$(AUDIO_FILE)" --transcription-file="$(TRANSCRIPT_FILE)" --whisper-model="$(WHISPER_MODEL)"
