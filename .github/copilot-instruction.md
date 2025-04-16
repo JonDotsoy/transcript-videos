@@ -40,3 +40,9 @@ Cada mensaje de commit debe seguir el siguiente formato:
 - `build: Modify GitHub Actions workflow.`
 - `build: Update .tool-version file.`
 - `feat(transcript): Add new audio processing script.`
+
+---
+
+## Instrucción adicional para commits asistidos
+
+Si el usuario te pide crear el commit, luego ejecuta el comando `git commit` con el mensaje proporcionado.
