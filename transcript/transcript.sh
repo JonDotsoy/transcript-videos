@@ -33,6 +33,10 @@ SOURCE_PATH=""
 # -------------------------------------------------
 FORCE_OVERWRITE=0
 
+AUDIO_PATH=""
+TRANSCRIPT_PATH=""
+WHISPER_MODEL="base"
+
 while [ $# -gt 0 ]; do
     case "$1" in
         --source=*)
@@ -52,6 +56,33 @@ while [ $# -gt 0 ]; do
             FORCE_OVERWRITE="${1#*=}"
             shift
             ;;
+        --wav=*)
+            AUDIO_PATH="${1#*=}"
+            shift
+            ;;
+        --wav)
+            shift
+            AUDIO_PATH="$1"
+            shift
+            ;;
+        --txt=*)
+            TRANSCRIPT_PATH="${1#*=}"
+            shift
+            ;;
+        --txt)
+            shift
+            TRANSCRIPT_PATH="$1"
+            shift
+            ;;
+        --whisper-model=*)
+            WHISPER_MODEL="${1#*=}"
+            shift
+            ;;
+        --whisper-model)
+            shift
+            WHISPER_MODEL="$1"
+            shift
+            ;;
         *)
             shift
             ;;
@@ -68,9 +99,12 @@ if [ ! -f "$SOURCE_PATH" ]; then
     exit 101
 fi
 
-AUDIO_PATH="${SOURCE_PATH%.*}.wav"
-TRANSCRIPT_PATH="${SOURCE_PATH%.*}.txt"
-WHISPER_MODEL="base"
+if [ -z "$AUDIO_PATH" ]; then
+    AUDIO_PATH="${SOURCE_PATH%.*}.wav"
+fi
+if [ -z "$TRANSCRIPT_PATH" ]; then
+    TRANSCRIPT_PATH="${SOURCE_PATH%.*}.txt"
+fi
 
 if [ -f "${AUDIO_PATH}" ] || [ $FORCE_OVERWRITE -eq 1 ]; then
     echo_debug " El archivo de audio ya existe: ${AUDIO_PATH}, omitiendo conversión."
