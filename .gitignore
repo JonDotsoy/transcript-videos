@@ -1,0 +1,6 @@
+ai_*
+summarize
+video-folder
+.env
+.*
+transcript*.sh
