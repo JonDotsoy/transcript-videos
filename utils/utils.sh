@@ -7,17 +7,17 @@ INFO_PREFIX="\033[1;32m[INFO]\033[0m"
 WARNING_PREFIX="\033[1;33m[WARNING]\033[0m"
 
 function echo_debug() {
-    echo "${DEBUG_PREFIX} $1"
+    echo "${DEBUG_PREFIX} $@"
 }
 
 function echo_error() {
-    echo "${ERROR_PREFIX} $1"
+    echo "${ERROR_PREFIX} $@"
 }
 
 function echo_info() {
-    echo "${INFO_PREFIX} $1"
+    echo "${INFO_PREFIX} $@"
 }
 
 function echo_warning() {
-    echo "${WARNING_PREFIX} $1"
+    echo "${WARNING_PREFIX} $@"
 }

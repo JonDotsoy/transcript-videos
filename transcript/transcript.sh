@@ -106,6 +106,9 @@ if [ -z "$TRANSCRIPT_PATH" ]; then
     TRANSCRIPT_PATH="${SOURCE_PATH%.*}.txt"
 fi
 
+mkdir -p "$(dirname "$AUDIO_PATH")"
+mkdir -p "$(dirname "$TRANSCRIPT_PATH")"
+
 if [ -f "${AUDIO_PATH}" ] || [ $FORCE_OVERWRITE -eq 1 ]; then
     echo_debug " El archivo de audio ya existe: ${AUDIO_PATH}, omitiendo conversión."
 else    
